@@ -1,24 +1,20 @@
 class Solution {
-    public int[] findMissingAndRepeatedValues(int[][] grid) {
-        int n = grid.length;
-        int size = n * n;
-        int[] freq = new int[size + 1];
-        int repeated = -1, missing = -1;
-
-        for (int[] row : grid) {
-            for (int num : row) {
-                freq[num]++;
+    public int[] findMissingAndRepeatedValues(int[][] g) {
+        int r=g.length;
+        int c=g[0].length;
+        int tot=r*r;
+        int[] freq=new int[tot+1];
+        int[] res=new int[2];
+        int sum=0,mx=-1;
+        for(int i=0;i<r;i++){
+            for(int j=0;j<c;j++){
+                freq[g[i][j]]++;
             }
         }
-
-        for (int num = 1; num <= size; num++) {
-            if (freq[num] == 2) {
-                repeated = num;
-            } else if (freq[num] == 0) {
-                missing = num;
-            }
+        for(int i=1;i<=tot;i++){
+            if(freq[i]==0) res[1]=i;
+            else if(freq[i]==2) res[0]=i;
         }
-
-        return new int[]{repeated, missing};
+        return res;
     }
 }
