@@ -1,16 +1,22 @@
 class Solution {
     public int numSubarraysWithSum(int[] nums, int g) {
-        HashMap<Integer,Integer> h=new HashMap<>();
-        h.put(0,1);
-        int cnt=0;
-        int sum=0;
-        for(int i=0;i<nums.length;i++){
-            sum+=nums[i];
-            if(h.get(sum-g)!=null){
-                cnt=cnt+h.get(sum-g);
+        int c1 = help(nums, g);
+        int c2 = help(nums, g - 1);
+        return c1 - c2;
+    }
+
+    private int help(int[] nums, int g) {
+        if (g < 0) return 0;
+        int l = 0, r = 0, cnt = 0, sum = 0;
+        while (r < nums.length) {
+            sum += nums[r];
+            while (l <= r && sum > g) {
+                sum -= nums[l];
+                l++;
             }
-            h.put(sum,h.getOrDefault(sum,0)+1);
+            cnt += (r - l + 1);
+            r++;
         }
-        return cnt++;
+        return cnt;
     }
 }
