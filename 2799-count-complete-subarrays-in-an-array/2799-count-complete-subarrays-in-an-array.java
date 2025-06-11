@@ -13,7 +13,7 @@ class Solution {
         while(r<nums.length){
             int re=nums[r];
             hm.put(re,hm.getOrDefault(re,0)+1);
-            while(hm.size()>k){
+            if(hm.size()>k){
                 int le=nums[l];
                 hm.put(le,hm.get(le)-1);
                 if(hm.get(le)==0) hm.remove(le);
