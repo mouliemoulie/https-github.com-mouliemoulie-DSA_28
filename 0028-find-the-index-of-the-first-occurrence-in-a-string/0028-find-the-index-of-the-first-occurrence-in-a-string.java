@@ -12,7 +12,7 @@ class Solution {
                 }
             }
             else {
-                j = j - cnt;
+                j = j - i;
                 cnt=0;
                 i=0;
             }
