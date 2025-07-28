@@ -1,7 +1,7 @@
 class Solution {
 public:
-    string convert(string s, int nr) {
-        string mat[nr][s.size()];
+    string convert(string s, int numRows) {
+        /*string mat[nr][s.size()];
         int r=0;
         int c=0;
         int i=0;
@@ -21,6 +21,25 @@ public:
                 ans+=mat[j][k];
             }
         }
-        return ans;
+        return ans;*/
+                if(numRows == 1 || s.size() <= numRows)
+            return s;
+
+        vector<string> rows(numRows);
+        int i = 0;
+        int n = s.size();
+
+        while(i < n){
+            for(int r = 0; r < numRows && i < n; r++)
+                rows[r] += s[i++];
+            for(int r = numRows - 2; r > 0 && i < n; r--)
+                rows[r] += s[i++];
+        }
+
+        string result = "";
+        for(string& row : rows)
+            result += row;
+
+        return result;
     }
 };
