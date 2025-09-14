@@ -8,6 +8,6 @@ class Solution(object):
         for i in nums:
             if i in seen:
                 return True
-            seen.add(i)
+            seen.append(i)
         return False
         
